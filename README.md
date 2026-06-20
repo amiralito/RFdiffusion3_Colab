@@ -1,5 +1,7 @@
 # RFdiffusion3 Design Pipeline (Colab)
 
+"<a href=\"https://colab.research.google.com/github/amiralito/RFdiffusion3_Colab/blob/main/RFdiffusion3_design_pipeline.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+
 End-to-end protein design on Google Colab using the
 [RosettaCommons Foundry](https://github.com/RosettaCommons/foundry) stack:
 **RFD3 → LigandMPNN → RF3**. Generate backbones with all-atom diffusion, design sequences
