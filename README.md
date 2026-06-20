@@ -1,6 +1,6 @@
 # RFdiffusion3 Design Pipeline (Colab)
 
-"<a href=\"https://colab.research.google.com/github/amiralito/RFdiffusion3_Colab/blob/main/RFdiffusion3_design_pipeline.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+[![Single](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amiralito/RFdiffusion3_Colab/blob/main/RFdiffusion3_design_pipeline.ipynb)
 
 End-to-end protein design on Google Colab using the
 [RosettaCommons Foundry](https://github.com/RosettaCommons/foundry) stack:
