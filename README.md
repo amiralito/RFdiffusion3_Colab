@@ -113,10 +113,31 @@ cell overrides the form.
 - `TIE_CHAINS` — *(symmetric only)* tie binder subunit chains to one shared sequence
   (`--homo_oligomer_chains`), required so a symmetric cap keeps its symmetry.
 - `DIFFUSION_BATCH_SIZE` *(Step 8)* — designs per forward pass; lower it if a large target OOMs.
+Total designs per job = `N_BATCHES` x `DIFFUSION_BATCH_SIZE` (the cell prints the total).
 - The cell auto-locates the LigandMPNN checkpoint and passes the required
   `--checkpoint_path` / `--is_legacy_weights` (unlike `rfd3`/`rf3`, MPNN does not auto-discover weights).
 - After the run it **repairs the output CIFs** so they open in ChimeraX/PyMOL and **writes
   `binder_sequences.fasta`** — the designed binder sequence from every structure, in one file.
+
+## Resuming an interrupted campaign
+
+Colab disconnects are the normal reason a long campaign stops part-way. Nothing is lost — every
+run is a self-contained folder on Drive.
+
+1. Re-run **Setup** with `RESUME_RUN = latest` (or a run folder name, or a full path). `WORK`
+   reattaches to that run instead of creating a new one.
+2. Re-run **Step 2** (install) and **Step 3** (weights — skipped, already cached).
+3. Run the **campaign status** cell to see what is done and which step to run next.
+4. Re-run that step. With `SKIP_EXISTING = True` (the default in steps 8–10), finished work is
+   kept and only the missing designs are produced:
+   - **Step 8** passes `skip_existing` to RFD3, so existing backbones are kept and new ones added.
+     Re-running it with a larger `N_BATCHES` is also how you *grow* a campaign.
+   - **Step 9** skips backbones that already have designed sequences.
+   - **Step 10** skips designs that have already been refolded.
+
+A failure part-way through steps 9 or 10 no longer aborts the batch: the remaining items are
+still processed and the failures are listed at the end (unless the *first* item fails, which
+usually means a settings problem and stops immediately).
 
 ## Outputs
 
